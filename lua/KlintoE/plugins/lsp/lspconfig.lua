@@ -38,6 +38,7 @@ return {
 				keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 				keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" })
+				keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 			end
 
 			-- LSP server configurations

@@ -22,5 +22,6 @@ return {
 		vim.keymap.set("n", "<leader>tl", function()
 			require("trouble").toggle("loclist")
 		end, { desc = "loclist diagnosis" })
+		vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
 	end,
 }

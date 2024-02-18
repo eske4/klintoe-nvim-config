@@ -45,7 +45,24 @@ return {
 			local servers = {
 				tsserver = { capabilities = capabilities, on_attach = on_attach },
 				html = { capabilities = capabilities, on_attach = on_attach },
-				lua_ls = { capabilities = capabilities, on_attach = on_attach },
+				lua_ls = { 
+					capabilities = capabilities, 
+					on_attach = on_attach,
+					settings = { -- custom settings for lua
+					Lua = {
+					  -- make the language server recognize "vim" global
+					  diagnostics = {
+						globals = { "vim" },
+					  },
+					  workspace = {
+						-- make language server aware of runtime files
+						library = {
+						  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+						  [vim.fn.stdpath("config") .. "/lua"] = true,
+						},
+					  },
+					},
+				  }},
 				clangd = { capabilities = capabilities, on_attach = on_attach },
 				["dartls"] = { -- Use quotes for dartls
 					capabilities = capabilities,
@@ -68,6 +85,7 @@ return {
 						},
 					},
 				},
+				vimls = { capabilities = capabilities, on_attach = on_attach },
 			}
 
 			-- Loop through servers and set up configurations

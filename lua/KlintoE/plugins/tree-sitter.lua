@@ -23,6 +23,7 @@ return {
 					"c_sharp",
 					"cmake",
 					"cpp",
+					"vim",
 				},
 				sync_install = false,
 				highlight = { enable = true },

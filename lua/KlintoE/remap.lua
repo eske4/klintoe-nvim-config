@@ -15,3 +15,6 @@ vim.api.nvim_set_keymap("v", "<c-s>", ":update<cr>", { noremap = true, silent = 
 vim.api.nvim_set_keymap("i", "<c-s>", "<Esc>:update<cr>a", { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<C-f>', 'za', { noremap = true, silent = true }) -- fold or unfold
+
+vim.api.nvim_set_keymap('n', '<leader>nth', ':split<cr>', { noremap = true, silent = true }) -- new tab horizontal
+vim.api.nvim_set_keymap('n', '<leader>ntv', ':vsplit<cr>', { noremap = true, silent = true }) -- new tab vertical

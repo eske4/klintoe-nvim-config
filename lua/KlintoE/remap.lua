@@ -15,8 +15,6 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]], { desc = "Delete to void regist
 
 vim.keymap.set("n", "Q", "<nop>")
 
-vim.keymap.set("n", "<leader>ts", "<cmd>silent !tmux neww tmux-sessionizer<CR>", { desc = "Switch tmux session" })
-
 -- Ensure ctrl+s works in every mode without leaving insert mode when in insert mode
 vim.keymap.set("n", "<c-s>", ":w<cr>")
 vim.keymap.set("v", "<c-s>", ":w<cr>")

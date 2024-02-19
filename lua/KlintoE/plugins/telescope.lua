@@ -2,6 +2,7 @@ return {
 	"nvim-telescope/telescope.nvim",
 	tag = "0.1.5",
 	dependencies = { "nvim-lua/plenary.nvim" },
+	lazy = true,
 	config = function()
 		-- set keymaps
 		local builtin = require("telescope.builtin")

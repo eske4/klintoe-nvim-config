@@ -7,7 +7,6 @@ return {
 		build = ":TSUpdate",
 		config = function()
 			local configs = require("nvim-treesitter.configs")
-
 			configs.setup({
 				ensure_installed = {
 					"c",
@@ -27,7 +26,8 @@ return {
 				},
 				sync_install = false,
 				highlight = { enable = true },
-				indent = { enable = true },
+				indent = { enable = false },
+				additional_vim_regex_highlighting = false,
 			})
 		end,
 	},

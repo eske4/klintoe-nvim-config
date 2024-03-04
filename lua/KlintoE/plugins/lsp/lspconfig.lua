@@ -3,9 +3,11 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
+			{ "folke/neodev.nvim", opts = {} },
 		},
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
+			require("neodev").setup({})
 			local lspconfig = require("lspconfig")
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -45,24 +47,7 @@ return {
 			local servers = {
 				tsserver = { capabilities = capabilities, on_attach = on_attach },
 				html = { capabilities = capabilities, on_attach = on_attach },
-				lua_ls = { 
-					capabilities = capabilities, 
-					on_attach = on_attach,
-					settings = { -- custom settings for lua
-					Lua = {
-					  -- make the language server recognize "vim" global
-					  diagnostics = {
-						globals = { "vim" },
-					  },
-					  workspace = {
-						-- make language server aware of runtime files
-						library = {
-						  [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-						  [vim.fn.stdpath("config") .. "/lua"] = true,
-						},
-					  },
-					},
-				  }},
+				lua_ls = { capabilities = capabilities, on_attach = on_attach },
 				clangd = { capabilities = capabilities, on_attach = on_attach },
 				["dartls"] = { -- Use quotes for dartls
 					capabilities = capabilities,

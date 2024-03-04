@@ -13,7 +13,8 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({ { import = "KlintoE.plugins" }, { import = "KlintoE.plugins.lsp" } }, {
 	install = {
-		colorscheme = { "rose-pine/neovim", name = "rose-pine" },
+		-- colorscheme = { "rose-pine/neovim", name = "rose-pine" },
+		colorscheme = { "AlphaTechnolog/pywal.nvim", name = "pywal" },
 	},
 	checker = {
 		enabled = true,

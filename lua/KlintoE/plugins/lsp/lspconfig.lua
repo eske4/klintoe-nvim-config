@@ -3,11 +3,9 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
-			{ "folke/neodev.nvim", opts = {} },
 		},
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
-			require("neodev").setup({})
 			local lspconfig = require("lspconfig")
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -40,7 +38,7 @@ return {
 				keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 				keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" })
-				keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
+				keymap.set("n", "<leader>ca", vm.lsp.buf.code_action, { desc = "Code actions" })
 			end
 
 			-- LSP server configurations

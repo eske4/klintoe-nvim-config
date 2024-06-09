@@ -62,9 +62,9 @@ return {
 						path = "[path]",
 						luasnip = "[snip]",
 					},
+					show_labelDetails = true,
 				}),
 			},
 		})
 	end,
 }
-

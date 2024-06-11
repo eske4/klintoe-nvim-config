@@ -38,7 +38,7 @@ return {
 				keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
 				keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" })
-				keymap.set("n", "<leader>ca", vm.lsp.buf.code_action, { desc = "Code actions" })
+				keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
 			end
 
 			-- LSP server configurations
@@ -47,27 +47,6 @@ return {
 				html = { capabilities = capabilities, on_attach = on_attach },
 				lua_ls = { capabilities = capabilities, on_attach = on_attach },
 				clangd = { capabilities = capabilities, on_attach = on_attach },
-				["dartls"] = { -- Use quotes for dartls
-					capabilities = capabilities,
-					on_attach = on_attach,
-					cmd = { "dart", "language-server", "--protocol=lsp" }, -- Additional configurations for dartls if needed
-					filetypes = { "dart" },
-					init_options = {
-						onlyAnalyzeProjectsWithOpenFiles = false,
-						suggestFromUnimportedLibraries = true,
-						closingLabels = true,
-						outline = false,
-						flutterOutline = false,
-					},
-					settings = {
-						dart = {
-							analysisExcludedFolders = dartExcludedFolders,
-							updateImportsOnRename = true,
-							completeFunctionCalls = true,
-							showTodos = true,
-						},
-					},
-				},
 				vimls = { capabilities = capabilities, on_attach = on_attach },
 			}
 

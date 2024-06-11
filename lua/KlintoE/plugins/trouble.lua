@@ -1,27 +1,37 @@
 return {
 	"folke/trouble.nvim",
-	dependencies = { "nvim-tree/nvim-web-devicons" },
-	config = function()
-		require("trouble").setup({
-			icons = false,
-			-- your configuration comes here
-			-- or leave it empty to use the default settings
-			-- refer to the configuration section below
-		})
-
-		-- Lua
-		vim.keymap.set("n", "<leader>tt", function()
-			require("trouble").toggle()
-		end, { desc = "whole project diagnosis" })
-		vim.keymap.set("n", "<leader>tw", function()
-			require("trouble").toggle("workspace_diagnostics")
-		end, { desc = "workspace diagnosis" })
-		vim.keymap.set("n", "<leader>td", function()
-			require("trouble").toggle("document_diagnostics")
-		end, { desc = "document diagnosis" })
-		vim.keymap.set("n", "<leader>tl", function()
-			require("trouble").toggle("loclist")
-		end, { desc = "loclist diagnosis" })
-		vim.keymap.set("n", "<leader>tq", "<cmd>TroubleToggle quickfix<cr>", { silent = true, noremap = true })
-	end,
+	opts = {}, -- for default options, refer to the configuration section for custom setup.
+	cmd = "Trouble",
+	keys = {
+		{
+			"<leader>tt",
+			"<cmd>Trouble diagnostics toggle<cr>",
+			desc = "Diagnostics (Trouble)",
+		},
+		{
+			"<leader>tf",
+			"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+			desc = "Buffer Diagnostics (Trouble)",
+		},
+		{
+			"<leader>ts",
+			"<cmd>Trouble symbols toggle focus=false<cr>",
+			desc = "Symbols (Trouble)",
+		},
+		{
+			"<leader>tl",
+			"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+			desc = "LSP Definitions / references / ... (Trouble)",
+		},
+		{
+			"<leader>tL",
+			"<cmd>Trouble loclist toggle<cr>",
+			desc = "Location List (Trouble)",
+		},
+		{
+			"<leader>tQ",
+			"<cmd>Trouble qflist toggle<cr>",
+			desc = "Quickfix List (Trouble)",
+		},
+	},
 }

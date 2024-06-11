@@ -2,7 +2,7 @@
 vim.g.mapleader = " "
 
 -- Define key mappings
-vim.keymap.set("n", "<leader>pv", ":Oil<cr>")
+vim.keymap.set("n", "<leader>sd", ":Oil<cr>", { desc = "Browse directory" })
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Calling git status" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move highlighted items down in visual mode
@@ -11,7 +11,7 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- Move highlighted items up in vis
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to clipboard outside of nvim" })
 vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy to clipboard outside of nvim" })
 
-vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete to void register" })
+vim.keymap.set({ "n", "v" }, "<leader>dv", [["_d]], { desc = "Delete to void register" })
 
 vim.keymap.set("n", "Q", "<nop>")
 
@@ -35,7 +35,7 @@ vim.api.nvim_set_keymap("n", "<leader>ntv", ":vsplit<cr>", { desc = "Create a ne
 
 vim.keymap.set(
 	"n",
-	"<leader>s",
+	"<leader>rw",
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "Replace every word, only in current document" }
 )

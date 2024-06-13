@@ -3,7 +3,7 @@ vim.g.mapleader = " "
 
 -- Define key mappings
 vim.keymap.set("n", "<leader>sd", ":Oil<cr>", { desc = "Browse directory" })
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git, { desc = "Calling git status" })
+vim.keymap.set("n", "<leader>gs", ":Neogit<cr>", { desc = "Trigger Neogit" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move highlighted items down in visual mode
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- Move highlighted items up in visual mode

@@ -46,6 +46,7 @@ return {
 				tsserver = { capabilities = capabilities, on_attach = on_attach },
 				html = { capabilities = capabilities, on_attach = on_attach },
 				lua_ls = { capabilities = capabilities, on_attach = on_attach },
+				csharp_ls = { capabilities = capabilities, on_attach = on_attach },
 				clangd = {
 					capabilities = capabilities,
 					on_attach = on_attach,

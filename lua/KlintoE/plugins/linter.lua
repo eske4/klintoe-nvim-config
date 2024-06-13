@@ -19,6 +19,7 @@ return {
 				ruby = { "standardrb" },
 				cpp = { "clangtidy" },
 				c = { "clangtidy" },
+				csharp = { "csharpier" },
 				json = { "jsonlint" },
 				yaml = { "yamllint" },
 				sh = { "shellcheck" },

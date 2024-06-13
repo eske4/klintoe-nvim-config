@@ -18,6 +18,7 @@ return {
 					"css",
 					"c_sharp",
 					"dart",
+					"dockerfile",
 					"gitignore",
 					"rust",
 					"yaml",
@@ -39,6 +40,7 @@ return {
 					"http",
 					"php",
 					"python",
+					"regex",
 				},
 
 				-- Install parsers synchronously (only applied to `ensure_installed`)

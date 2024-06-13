@@ -17,7 +17,16 @@ return {
 				kotlin = { "ktlint" },
 				terraform = { "tflint" },
 				ruby = { "standardrb" },
-				cpp = { "cpplint" },
+				cpp = { "clangtidy" },
+				c = { "clangtidy" },
+				json = { "jsonlint" },
+				yaml = { "yamllint" },
+				sh = { "shellcheck" },
+				css = { "stylelint" },
+				php = { "phpinsights" },
+				html = { "tidy" },
+				cmake = { "cmakelint" },
+				zsh = { "zsh" },
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

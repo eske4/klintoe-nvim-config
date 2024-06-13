@@ -40,6 +40,21 @@ return {
 				"pyright",
 				"clangd",
 				"vimls",
+				"jsonls",
+				"lemminx",
+				"yamlls",
+				"somesass_ls",
+				"r_language_server",
+				"ltex",
+				"autotools_ls",
+				"marksman",
+				"dockerls",
+				"docker_compose_language_service",
+				"cmake",
+				"csharp_ls",
+				"bashls",
+				"arduino_language_server",
+				"angularls",
 			},
 			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
@@ -54,10 +69,23 @@ return {
 				"pylint", -- python linter
 				"eslint_d", -- js linter
 				"clang-format",
-				"cpplint",
+				"cmakelang",
 				"cmakelint",
 				"luacheck",
+				"jsonlint",
+				"htmlbeautifier",
+				"golangci-lint",
+				"checkstyle",
+				"markdownlint",
+				"yamllint",
+				"stylelint",
+				"beautysh",
+				"pretty-php",
+				"latexindent",
+				"csharpier",
 			},
 		})
+
+		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 	end,
 }

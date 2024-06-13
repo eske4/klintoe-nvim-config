@@ -20,6 +20,14 @@ return {
 				graphql = { "prettier" },
 				lua = { "stylua" },
 				python = { "isort", "black" },
+				cmake = { "cmakelang" },
+				bash = { "beautysh" },
+				cpp = { "clang-format" },
+				c = { "clang-format" },
+				php = { "pretty-php" },
+				r = { "styler" },
+				csharp = { "csharpier" },
+				latex = { "latexindent" },
 			},
 			format_on_save = {
 				lsp_fallback = true,
@@ -37,4 +45,3 @@ return {
 		end, { desc = "Format file or range (in visual mode)" })
 	end,
 }
-

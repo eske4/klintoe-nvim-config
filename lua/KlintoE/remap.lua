@@ -39,3 +39,15 @@ vim.keymap.set(
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "Replace every word, only in current document" }
 )
+
+vim.keymap.set("n", "<C-7>", '<cmd>exe v:count1 . "ToggleTerm"<CR>')
+vim.keymap.set("i", "<C-7>", '<cmd>exe v:count1 . "ToggleTerm"<CR>')
+
+function _G.set_terminal_keymaps()
+	local opts = { noremap = true }
+	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
+	vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
+end
+
+-- if you only want these mappings for toggle term use term://*toggleterm#* instead
+vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")

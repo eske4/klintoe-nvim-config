@@ -41,23 +41,25 @@ return {
 
 		dap.adapters.dart = {
 			type = "executable",
-			command = "dart",
+			command = "flutter",
 			-- This command was introduced upstream in https://github.com/dart-lang/sdk/commit/b68ccc9a
 			args = { "debug_adapter" },
 		}
+
 		dap.configurations.dart = {
 			{
 				type = "dart",
 				request = "launch",
-				name = "Launch Dart Program",
+				name = "Launch Flutter Program",
 				-- The nvim-dap plugin populates this variable with the filename of the current buffer
 				program = "${file}",
 				-- The nvim-dap plugin populates this variable with the editor's current working directory
 				cwd = "${workspaceFolder}",
-				args = { "--help" }, -- Note for Dart apps this is args, for Flutter apps toolArgs
+				-- This gets forwarded to the Flutter CLI tool, substitute `linux` for whatever device you wish to launch
+				-- Switch chrome to whatever device you want to use for debug such as linux, windows, mac, or a browser etc
+				toolArgs = { "-d", "chrome" },
 			},
 		}
-
 		-- For C/C++/Rust:
 
 		dap.adapters.codelldb = {

@@ -3,6 +3,7 @@ vim.g.mapleader = " "
 
 -- Define key mappings
 vim.keymap.set("n", "<leader>sd", ":Oil<cr>", { desc = "Browse directory" })
+vim.keymap.set("n", "<leader>st", ":TodoTelescope<cr>", { desc = "Search TodoList" })
 vim.keymap.set("n", "<leader>gs", ":Neogit<cr>", { desc = "Trigger Neogit" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move highlighted items down in visual mode

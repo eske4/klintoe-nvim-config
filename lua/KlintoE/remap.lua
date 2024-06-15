@@ -4,7 +4,21 @@ vim.g.mapleader = " "
 -- Define key mappings
 vim.keymap.set("n", "<leader>sd", ":Oil<cr>", { desc = "Browse directory" })
 vim.keymap.set("n", "<leader>st", ":TodoTelescope<cr>", { desc = "Search TodoList" })
-vim.keymap.set("n", "<leader>gs", ":Neogit<cr>", { desc = "Trigger Neogit" })
+vim.keymap.set("n", "<leader>gb", ":Neogit<cr>", { desc = "Trigger Neogit" })
+vim.keymap.set("n", "<leader>gh", ":DiffviewFileHistory<cr>", { desc = "Look at git file history" })
+
+vim.keymap.set("n", "<leader>gss", ":lua require('gitsigns').stage_hunk()<cr>", { desc = "Stage hunk" })
+vim.keymap.set("n", "<leader>gsu", ":lua require('gitsigns').undo_stage_hunk()<cr>", { desc = "Undo stage hunk" })
+vim.keymap.set("n", "<leader>gsr", ":lua require('gitsigns').reset_hunk()<cr>", { desc = "Reset hunk" })
+vim.keymap.set("n", "<leader>gsp", ":lua require('gitsigns').preview_hunk()<cr>", { desc = "Preview hunk" })
+vim.keymap.set(
+	"n",
+	"<leader>gsb",
+	":lua require('gitsigns').blame_line()<cr>",
+	{ desc = "Blame line, who did write it or change it" }
+)
+vim.keymap.set("n", "<leader>gsf", ":lua require('gitsigns').diffthis('~1')<cr>", { desc = "Diff this" })
+vim.keymap.set("n", "<leader>gsn", ":lua require('gitsigns').next_hunk()<cr>", { desc = "Next hunk" })
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move highlighted items down in visual mode
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- Move highlighted items up in visual mode

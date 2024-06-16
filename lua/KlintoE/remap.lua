@@ -23,6 +23,7 @@ wk.register({
 	},
 })
 
+-- Workspace commands: new tabs, terminals etc
 wk.register({
 	["<leader>w"] = {
 		name = "Workspace settings",
@@ -34,6 +35,7 @@ wk.register({
 	},
 })
 
+-- Navigation commands things to switch between files
 wk.register({
 	["<leader>n"] = {
 		name = "Navigate",
@@ -51,6 +53,7 @@ wk.register({
 	},
 })
 
+-- Debugger commands
 wk.register({
 	["<leader>d"] = {
 		name = "Debugger",
@@ -72,6 +75,43 @@ wk.register({
 	},
 })
 
+-- Focus commands for now
+wk.register({
+	["<leader>f"] = {
+		name = "Focus mode currently",
+
+		["m"] = {
+			name = "Focus modes",
+			t = { ":Twillight<CR>" },
+			z = { ":ZenMode<CR>" },
+		},
+	},
+})
+
+-- Edit commands
+wk.register({
+	["<leader>e"] = {
+		name = "Edit commands",
+		["d"] = {
+			name = "Delete commands",
+			v = { '"_d<cr>', "Delete to the void", mode = { "v", "n" } },
+		},
+		["p"] = {
+			name = "Paste",
+			v = { '"_dP', "Paste then content to void" },
+		},
+		x = { "<cmd>!chmod +x %<CR>", "Make the file executable" },
+	},
+})
+
+vim.keymap.set( -- TODO: someday get this into wk.register above
+	"n",
+	"<leader>rw",
+	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
+	{ desc = "Replace every word, only in current document" }
+)
+
+-- Search commands
 wk.register({
 	["<leader>s"] = {
 		name = "Search",
@@ -99,40 +139,27 @@ wk.register({
 	},
 })
 
+-----------------------------------------------------------
+-- Settings to improve Nvim but not shortcuts to remember--
+-----------------------------------------------------------
+
 -- Enables movement of highlighted text and movement inside code blocks etc
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move highlighted items down in visual mode
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- Move highlighted items up in visual mode
 
 -- Enables copy so it can paste outside of neovim
 wk.register({
-	["<leader>y"] = { [["+y"]], "Copy to clipboard outside of nvim" },
-	["<leader>Y"] = { [["+Y"]], "Copy to clipboard outside of nvim" },
+	["<leader>y"] = { '"+y', "Copy to clipboard outside of nvim", mode = { "v", "n" } },
+	["<leader>Y"] = { '"+Y', "Copy to clipboard outside of nvim" },
 })
 
--- Enables to copy text to system clipboard
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy to system clipboard" })
-
--- Delete to void register to it doesnt hold a copy in clipboard
-vim.keymap.set({ "n", "v" }, "<leader>dv", [["_d]], { desc = "Delete to void register" })
-
-vim.keymap.set("n", "Q", "<nop>")
-
+-- Fold shortcut to open or fold functions etc
 vim.keymap.set("n", "<C-f>", "za") -- Fold or unfold
 
 -- Reduce jumping when searching or move item 1 line up
 vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste and remove marked word into void" })
-
-vim.keymap.set(
-	"n",
-	"<leader>rw",
-	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
-	{ desc = "Replace every word, only in current document" }
-)
 
 vim.keymap.set("n", "<C-7>", '<cmd>exe v:count1 . "ToggleTerm"<CR>')
 vim.keymap.set("i", "<C-7>", '<cmd>exe v:count1 . "ToggleTerm"<CR>')
@@ -145,10 +172,3 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
-
-vim.keymap.set("n", "<leader>fmt", ":Twilight<cr>", { desc = "Twillight mode/ blur unhighlighted text" })
-vim.keymap.set("n", "<leader>fmz", ":ZenMode<cr>", { desc = "Zen mode/ twillight where ui/pop up etc is disabled" })
-
-vim.keymap.set("n", "<leader>fu", function()
-	require("treesitter-context").go_to_context(vim.v.count1)
-end, { desc = "move count function up" })

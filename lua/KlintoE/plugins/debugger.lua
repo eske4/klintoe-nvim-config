@@ -85,7 +85,7 @@ return {
 		-------------------------------C#
 		dap.adapters.coreclr = {
 			type = "executable",
-			command = bin_locations .. "/netcoredbg",
+			command = bin_locations .. "netcoredbg",
 			args = { "--interpreter=vscode" },
 		}
 

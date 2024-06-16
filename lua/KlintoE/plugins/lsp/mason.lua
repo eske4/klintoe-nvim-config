@@ -3,6 +3,8 @@ return {
 	dependencies = {
 		"williamboman/mason-lspconfig.nvim",
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		"mfussenegger/nvim-dap",
+		"jay-babu/mason-nvim-dap.nvim",
 	},
 
 	config = function()
@@ -11,8 +13,8 @@ return {
 
 		-- import mason-lspconfig
 		local mason_lspconfig = require("mason-lspconfig")
-
 		local mason_tool_installer = require("mason-tool-installer")
+		local mason_dap = require("mason-nvim-dap")
 
 		-- enable mason and configure icons
 		mason.setup({
@@ -26,7 +28,7 @@ return {
 		})
 
 		mason_lspconfig.setup({
-			-- list of servers for mason to install
+			-- Language servers
 			ensure_installed = {
 				"tsserver",
 				"html",
@@ -62,27 +64,43 @@ return {
 
 		mason_tool_installer.setup({
 			ensure_installed = {
-				"prettier", -- prettier formatter
-				"stylua", -- lua formatter
-				"isort", -- python formatter
-				"black", -- python formatter
-				"pylint", -- python linter
-				"eslint_d", -- js linter
-				"clang-format",
-				"cmakelang",
-				"cmakelint",
-				"luacheck",
-				"jsonlint",
-				"htmlbeautifier",
-				"golangci-lint",
-				"checkstyle",
-				"markdownlint",
-				"yamllint",
-				"stylelint",
-				"beautysh",
-				"pretty-php",
-				"latexindent",
-				"csharpier",
+
+				-- Formatter and Linters
+				"cmakelang", -- CMake
+				"markdownlint", --Markdown
+
+				-- Linters
+				"pylint", -- Python
+				"eslint_d", -- Javascript and more
+				"cmakelint", -- CMake
+				"luacheck", -- Lua
+				"jsonlint", -- Json
+				"golangci-lint", -- Golang
+				"checkstyle", -- Overall
+				"yamllint", -- Yaml
+				"stylelint", -- CSS/SCSS etc
+
+				-- Formatters
+				"stylua", -- lua
+				"prettier",
+				"isort", -- python
+				"black", -- python
+				"htmlbeautifier", -- HTML
+				"beautysh", --Shell
+				"latexindent", --Latex
+				"csharpier", --C#
+				"clang-format", --C/C++
+				"pretty-php", --PHP
+
+				-- Debugger adapters
+				"bash-debug-adapter", -- Shell
+				"codelldb", -- C/C++/Rust
+				"debugpy", -- Python
+				"java-debug-adapter", -- Java
+				"js-debug-adapter", -- Javascript
+				"kotlin-debug-adapter", -- Kotlin
+				"netcoredbg", -- C#
+				"php-debug-adapter", -- PHP
 			},
 		})
 

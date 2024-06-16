@@ -6,6 +6,8 @@ return {
 		"nvim-neotest/nvim-nio",
 	},
 	config = function()
+		local bin_locations = vim.fn.stdpath("data") .. "/mason/bin/"
+
 		local dap = require("dap")
 		local dapui = require("dapui")
 		require("nvim-dap-virtual-text").setup({})
@@ -26,19 +28,9 @@ return {
 			dapui.close()
 		end
 
-		vim.keymap.set("n", "<leader>dt", dap.toggle_breakpoint, { desc = "Debugger toggle breakpoint" })
-		vim.keymap.set("n", "<leader>dsb", dap.set_breakpoint, { desc = "Debugger set breakpoint" })
-		vim.keymap.set("n", "<leader>dsm", dap.step_over, { desc = "Debugger step over" })
-		vim.keymap.set("n", "<leader>dsM", dap.step_into, { desc = "Debugger step into" })
-		vim.keymap.set("n", "<leader>dso", dap.step_out, { desc = "Debugger step out" })
-		vim.keymap.set("n", "<leader>dc", dap.continue, { desc = "Debugger continue" })
-		vim.keymap.set("n", "<leader>dr", dap.restart, { desc = "Debugger restart" })
-		vim.keymap.set("n", "<leader>dsc", dap.restart, { desc = "Debugger step to cursor" })
-		vim.keymap.set("n", "<leader>dq", function()
-			dap.disconnect({ terminateDebuggee = true })
-			dapui.close()
-		end, { desc = "Debugger quit" })
+		-- Adapter configurations
 
+		-------------------------------Dart
 		dap.adapters.dart = {
 			type = "executable",
 			command = "flutter",
@@ -60,18 +52,15 @@ return {
 				toolArgs = { "-d", "chrome" },
 			},
 		}
-		-- For C/C++/Rust:
 
+		-------------------------------C/C++/Rust
 		dap.adapters.codelldb = {
 			type = "server",
 			port = "${port}",
+			host = "127.0.0.1",
 			executable = {
-				-- CHANGE THIS to your path!
-				command = "/usr/bin/lldb-vscode",
+				command = bin_locations .. "codelldb",
 				args = { "--port", "${port}" },
-
-				-- On windows you may have to uncomment this:
-				-- detached = false,
 			},
 		}
 
@@ -85,15 +74,18 @@ return {
 				end,
 				cwd = "${workspaceFolder}",
 				stopOnEntry = false,
+				runInTerminal = false,
 			},
 		}
+		require("dap").set_log_level("DEBUG")
 
 		dap.configurations.c = dap.configurations.cpp
 		dap.configurations.rust = dap.configurations.cpp
 
+		-------------------------------C#
 		dap.adapters.coreclr = {
 			type = "executable",
-			command = "/usr/bin/netcoredbg",
+			command = bin_locations .. "/netcoredbg",
 			args = { "--interpreter=vscode" },
 		}
 

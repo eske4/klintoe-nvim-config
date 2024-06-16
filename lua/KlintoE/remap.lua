@@ -1,52 +1,131 @@
 -- Set leader to space
 vim.g.mapleader = " "
 
--- Define key mappings
-vim.keymap.set("n", "<leader>sd", ":Oil<cr>", { desc = "Browse directory" })
-vim.keymap.set("n", "<leader>st", ":TodoTelescope<cr>", { desc = "Search TodoList" })
-vim.keymap.set("n", "<leader>gb", ":Neogit<cr>", { desc = "Trigger Neogit" })
-vim.keymap.set("n", "<leader>gh", ":DiffviewFileHistory<cr>", { desc = "Look at git file history" })
+-- Define key mappings with which-key descriptions
+local wk = require("which-key")
 
-vim.keymap.set("n", "<leader>gss", ":lua require('gitsigns').stage_hunk()<cr>", { desc = "Stage hunk" })
-vim.keymap.set("n", "<leader>gsu", ":lua require('gitsigns').undo_stage_hunk()<cr>", { desc = "Undo stage hunk" })
-vim.keymap.set("n", "<leader>gsr", ":lua require('gitsigns').reset_hunk()<cr>", { desc = "Reset hunk" })
-vim.keymap.set("n", "<leader>gsp", ":lua require('gitsigns').preview_hunk()<cr>", { desc = "Preview hunk" })
-vim.keymap.set(
-	"n",
-	"<leader>gsb",
-	":lua require('gitsigns').blame_line()<cr>",
-	{ desc = "Blame line, who did write it or change it" }
-)
-vim.keymap.set("n", "<leader>gsf", ":lua require('gitsigns').diffthis('~1')<cr>", { desc = "Diff this" })
-vim.keymap.set("n", "<leader>gsn", ":lua require('gitsigns').next_hunk()<cr>", { desc = "Next hunk" })
+-- Git mappings
+wk.register({
+	["<leader>g"] = {
+		name = "Git",
+		b = { ":Neogit<cr>", "Start git menu" },
+		h = { ":DiffviewFileHistory<cr>", "Look at git file history" },
+		["s"] = {
+			name = "Gitsigns",
+			s = { ":Git<cr>", "Git status" },
+			n = { ":lua require('gitsigns').next_hunk()<cr>", "Next hunk" },
+			u = { ":lua require('gitsigns').undo_stage_hunk()<cr>", "Undo stage hunk" },
+			r = { ":lua require('gitsigns').reset_hunk()<cr>", "Reset hunk" },
+			f = { ":lua require('gitsigns').diffthis('~1')<cr>", "Diff this" },
+			t = { ":TodoTelescope<cr>", "Search TodoList" },
+			b = { ":lua require('gitsigns').blame_line()<cr>", "Blame line" },
+		},
+	},
+})
 
+wk.register({
+	["<leader>w"] = {
+		name = "Workspace settings",
+		["p"] = {
+			name = "panel",
+			h = { ":split<cr>", "New panel horizontal" },
+			v = { ":vsplit<cr>", "New panel vertical" },
+		},
+	},
+})
+
+wk.register({
+	["<leader>n"] = {
+		name = "Navigate",
+		d = { ":Oil<cr>", "Navigate directory" },
+		["f"] = {
+			name = "find",
+			t = { ":TodoTelescope<cr>", "Navigate TodoList" },
+			f = { ":lua require('telescope.builtin').find_files()<CR>", "Navigate files" },
+			g = { ":lua require('telescope.builtin').git_files()<CR>", "Navigate git files" },
+			s = {
+				":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
+				"Find words",
+			},
+		},
+	},
+})
+
+wk.register({
+	["<leader>d"] = {
+		name = "Debugger",
+		t = { ":lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint for debugger" },
+		b = { ":lua require('dap').set_breakpoint()<cr>", "Set breakpoint" },
+		c = { ":lua require('dap').continue()<cr>", "Start debugger/continue" },
+		q = {
+			"<cmd>lua require('dap').disconnect({ terminateDebuggee = true })<CR><cmd>lua require('dapui').close()<CR>",
+			"Quit debugger",
+		},
+		r = { ":lua require('dap').restart()<cr>", "Restart debugger" },
+		["s"] = {
+			name = "Step",
+			i = { ":lua require('dap').step_into()<cr>", "Step into" },
+			o = { ":lua require('dap').step_over()<cr>", "Step over" },
+			O = { ":lua require('dap').step_out()<cr>", "Step over" },
+			c = { ":lua require('dap').restart()<cr>", "Step to cursor" },
+		},
+	},
+})
+
+wk.register({
+	["<leader>s"] = {
+		name = "Search",
+		["f"] = {
+			name = "Flash searching",
+			s = {
+				function()
+					require("flash").jump()
+				end,
+				"Flash jump",
+			},
+			t = {
+				function()
+					require("flash").treesitter()
+				end,
+				"Flash Treesiter / highlight block of code",
+			},
+			T = {
+				function()
+					require("flash").treesitter_search()
+				end,
+				"Flash telescope search",
+			},
+		},
+	},
+})
+
+-- Enables movement of highlighted text and movement inside code blocks etc
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move highlighted items down in visual mode
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- Move highlighted items up in visual mode
 
-vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to clipboard outside of nvim" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy to clipboard outside of nvim" })
+-- Enables copy so it can paste outside of neovim
+wk.register({
+	["<leader>y"] = { [["+y"]], "Copy to clipboard outside of nvim" },
+	["<leader>Y"] = { [["+Y"]], "Copy to clipboard outside of nvim" },
+})
 
+-- Enables to copy text to system clipboard
+vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]], { desc = "Copy to system clipboard" })
+vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Copy to system clipboard" })
+
+-- Delete to void register to it doesnt hold a copy in clipboard
 vim.keymap.set({ "n", "v" }, "<leader>dv", [["_d]], { desc = "Delete to void register" })
 
 vim.keymap.set("n", "Q", "<nop>")
 
--- Ensure ctrl+s works in every mode without leaving insert mode when in insert mode
-vim.keymap.set("n", "<c-s>", ":w<cr>")
-vim.keymap.set("v", "<c-s>", ":w<cr>")
-vim.keymap.set("i", "<c-s>", "<Esc>:w<cr>a")
-
 vim.keymap.set("n", "<C-f>", "za") -- Fold or unfold
 
+-- Reduce jumping when searching or move item 1 line up
 vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set("x", "<leader>p", '"_dp', { desc = "Paste and remove marked word into void" })
-
-vim.api.nvim_set_keymap("n", "<leader>nth", ":split<cr>", { desc = "Create a new tab horizontally" }) -- New tab horizontal
-vim.api.nvim_set_keymap("n", "<leader>ntv", ":vsplit<cr>", { desc = "Create a new tab vertically" }) -- New tab vertical
+vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste and remove marked word into void" })
 
 vim.keymap.set(
 	"n",
@@ -66,3 +145,10 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
+
+vim.keymap.set("n", "<leader>fmt", ":Twilight<cr>", { desc = "Twillight mode/ blur unhighlighted text" })
+vim.keymap.set("n", "<leader>fmz", ":ZenMode<cr>", { desc = "Zen mode/ twillight where ui/pop up etc is disabled" })
+
+vim.keymap.set("n", "<leader>fu", function()
+	require("treesitter-context").go_to_context(vim.v.count1)
+end, { desc = "move count function up" })

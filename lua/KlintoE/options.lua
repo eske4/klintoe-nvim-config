@@ -1,6 +1,8 @@
 -- Set up Neovim options
 local opt = vim.opt -- for conciseness
 
+opt.winbar = "%f %m"
+
 -- line numbers
 opt.relativenumber = true -- show relative line numbers
 opt.number = true -- shows absolute line number on cursor line (when relative number is on)
@@ -60,7 +62,7 @@ opt.clipboard:append("unnamedplus") -- use system clipboard as default register
 opt.splitright = true -- split vertical window to the right
 opt.splitbelow = true -- split horizontal window to the bottom
 
-vim.opt.fillchars = { eob = " " }
+opt.fillchars = { eob = " " }
 
 -- add icons to lint
 vim.fn.sign_define("DiagnosticSignError", { text = "", texthl = "DiagnosticSignError" })
@@ -69,4 +71,4 @@ vim.fn.sign_define("DiagnosticSignInfo", { text = "", texthl = "DiagnosticSig
 vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSignHint" })
 
 -- For Obsidian nvim to improve markdown experience
-vim.opt.conceallevel = 1
+opt.conceallevel = 1

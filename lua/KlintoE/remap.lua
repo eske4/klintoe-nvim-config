@@ -82,8 +82,8 @@ wk.register({
 
 		["m"] = {
 			name = "Focus modes",
-			t = { ":Twillight<CR>" },
-			z = { ":ZenMode<CR>" },
+			t = { ":Twilight<cr>", "Twillight mode focus on what is hovered" },
+			z = { ":ZenMode<cr>", "ZenMode remove all distractions and area smaller" },
 		},
 	},
 })

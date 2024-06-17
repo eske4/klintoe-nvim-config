@@ -1,3 +1,4 @@
+-- TODO: clean keymappings
 return {
 	"ThePrimeagen/harpoon",
 	dependencies = {
@@ -28,4 +29,3 @@ return {
 		})
 	end,
 }
-

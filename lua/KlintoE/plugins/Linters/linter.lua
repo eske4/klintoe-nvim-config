@@ -1,3 +1,4 @@
+--TODO: clear keymappings
 return {
 	{
 		"mfussenegger/nvim-lint",

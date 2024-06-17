@@ -1,6 +1,3 @@
--- Set leader to space
-vim.g.mapleader = " "
-
 -- Define key mappings with which-key descriptions
 local wk = require("which-key")
 
@@ -31,6 +28,20 @@ wk.register({
 			name = "panel",
 			h = { ":split<cr>", "New panel horizontal" },
 			v = { ":vsplit<cr>", "New panel vertical" },
+		},
+		["d"] = {
+			name = "Diagnostics",
+			l = {
+				function()
+					local virtual_text = vim.diagnostic.config().virtual_text
+					if virtual_text == nil then
+						virtual_text = false
+					end
+					vim.diagnostic.config({ virtual_text = not virtual_text })
+					require("lsp_lines").toggle()
+				end,
+				"Toggle Lsp_lines, which put diagnostics under code lines",
+			},
 		},
 	},
 })
@@ -103,6 +114,8 @@ wk.register({
 		x = { "<cmd>!chmod +x %<CR>", "Make the file executable" },
 	},
 })
+
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "undo tree toggle" })
 
 vim.keymap.set( -- TODO: someday get this into wk.register above
 	"n",

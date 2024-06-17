@@ -11,7 +11,19 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup({ { import = "KlintoE.plugins" }, { import = "KlintoE.plugins.lsp" } }, {
+require("lazy").setup({
+	{ import = "KlintoE.plugins.LSP" },
+	{ import = "KlintoE.plugins.Ui" },
+	{ import = "KlintoE.plugins.Motions" },
+	{ import = "KlintoE.plugins.Debuggers" },
+	{ import = "KlintoE.plugins.Editing-Helpers" },
+	{ import = "KlintoE.plugins.Games" },
+	{ import = "KlintoE.plugins.Git-Integrations" },
+	{ import = "KlintoE.plugins.Terminal-Integrations" },
+	{ import = "KlintoE.plugins.Syntax-and-Analysis" },
+	{ import = "KlintoE.plugins.Linters" },
+	{ import = "KlintoE.plugins.Lang-Frameworks" },
+}, {
 	install = {
 		-- colorscheme = { "rose-pine/neovim", name = "rose-pine" },
 		colorscheme = { "AlphaTechnolog/pywal.nvim", name = "pywal" },

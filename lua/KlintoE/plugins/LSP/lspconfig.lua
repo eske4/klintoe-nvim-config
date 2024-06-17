@@ -5,6 +5,7 @@ return {
 			"hrsh7th/cmp-nvim-lsp",
 		},
 		event = { "BufReadPre", "BufNewFile" },
+		-- WARNING: Remember if lsp_lines break, set virtual_text to true can be found in options.lua
 		config = function()
 			local lspconfig = require("lspconfig")
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")

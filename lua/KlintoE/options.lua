@@ -1,3 +1,6 @@
+-- Set leader key
+vim.g.mapleader = " "
+
 -- Set up Neovim options
 local opt = vim.opt -- for conciseness
 
@@ -72,3 +75,8 @@ vim.fn.sign_define("DiagnosticSignHint", { text = "", texthl = "DiagnosticSig
 
 -- For Obsidian nvim to improve markdown experience
 opt.conceallevel = 1
+
+-- WARNING: Remember if lsp_lines break, set virtual_text to true
+vim.diagnostic.config({
+	virtual_text = false,
+})

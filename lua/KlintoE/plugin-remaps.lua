@@ -20,6 +20,22 @@ wk.register({
 	},
 })
 
+-- Diagnostics commands
+wk.register({
+	["<leader>t"] = {
+		name = "Diagnostics",
+		t = { "<cmd>Trouble diagnostics toggle<CR>", "Diagnostics" },
+		f = { "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Buffer Diagnostics (Trouble)" },
+		s = { "<cmd>Trouble symbols toggle focus=false<CR>", "Symbols (Trouble)" },
+		l = {
+			"<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+			"LSP Definitions / references / ... (Trouble)",
+		},
+		L = { "<cmd>Trouble loclist toggle<CR>", "Location List (Trouble)" },
+		Q = { "<cmd>Trouble qflist toggle<CR>", "Quickfix List (Trouble)" },
+	},
+})
+
 -- Workspace commands: new tabs, terminals etc
 wk.register({
 	["<leader>w"] = {
@@ -112,17 +128,36 @@ wk.register({
 			v = { '"_dP', "Paste then content to void" },
 		},
 		x = { "<cmd>!chmod +x %<CR>", "Make the file executable" },
+		f = {
+			function()
+				require("conform").format({
+					lsp_fallback = true,
+					async = false,
+					timeout_ms = 1000,
+				})
+			end,
+			"Trigger formatting manually",
+		},
+		r = {
+			name = "replace",
+		},
 	},
 })
 
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "undo tree toggle" })
-
-vim.keymap.set( -- TODO: someday get this into wk.register above
+vim.keymap.set(
 	"n",
-	"<leader>rw",
+	"<leader>erw",
 	[[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
 	{ desc = "Replace every word, only in current document" }
 )
+
+-- Enables copy so it can paste outside of neovim
+wk.register({
+	["<leader>y"] = { '"+y', "Copy to clipboard outside of nvim", mode = { "v", "n" } },
+	["<leader>Y"] = { '"+Y', "Copy to clipboard outside of nvim" },
+})
+
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "undo tree toggle" })
 
 -- Search commands
 wk.register({
@@ -152,27 +187,8 @@ wk.register({
 	},
 })
 
------------------------------------------------------------
--- Settings to improve Nvim but not shortcuts to remember--
------------------------------------------------------------
-
--- Enables movement of highlighted text and movement inside code blocks etc
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv") -- Move highlighted items down in visual mode
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv") -- Move highlighted items up in visual mode
-
--- Enables copy so it can paste outside of neovim
-wk.register({
-	["<leader>y"] = { '"+y', "Copy to clipboard outside of nvim", mode = { "v", "n" } },
-	["<leader>Y"] = { '"+Y', "Copy to clipboard outside of nvim" },
-})
-
 -- Fold shortcut to open or fold functions etc
 vim.keymap.set("n", "<C-f>", "za") -- Fold or unfold
-
--- Reduce jumping when searching or move item 1 line up
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
 
 vim.keymap.set("n", "<C-7>", '<cmd>exe v:count1 . "ToggleTerm"<CR>')
 vim.keymap.set("i", "<C-7>", '<cmd>exe v:count1 . "ToggleTerm"<CR>')

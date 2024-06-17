@@ -1,3 +1,4 @@
 require("KlintoE.options")
+require("KlintoE.remaps")
 require("KlintoE.lazy")
-require("KlintoE.remap")
+require("KlintoE.plugin-remaps")

@@ -18,8 +18,6 @@ return {
 
 			-- Define the on_attach function to set keybinds and other configurations
 			local on_attach = function(client, bufnr)
-				opts.buffer = bufnr -- Set buffer-specific options
-
 				-- Set keybinds for LSP actions with descriptions
 				keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" })
 				keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })

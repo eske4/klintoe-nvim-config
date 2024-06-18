@@ -1,4 +1,3 @@
---TODO: Clear keymappings
 return {
 	{
 		"christoomey/vim-tmux-navigator",
@@ -18,4 +17,3 @@ return {
 		},
 	},
 }
-

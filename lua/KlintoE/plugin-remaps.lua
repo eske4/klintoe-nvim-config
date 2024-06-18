@@ -20,6 +20,19 @@ wk.register({
 	},
 })
 
+-- Analysis mappings
+wk.register({
+	["<leader>a"] = {
+		name = "Analysis commands",
+		l = {
+			function()
+				require("lint").try_lint()
+			end,
+			"Trigger linting for current file",
+		},
+	},
+})
+
 -- Diagnostics commands
 wk.register({
 	["<leader>t"] = {
@@ -75,6 +88,21 @@ wk.register({
 			s = {
 				":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
 				"Find words",
+			},
+		},
+		["h"] = {
+			name = "Harpoon",
+			m = {
+				function()
+					require("harpoon.mark").add_file()
+				end,
+				"Mark file",
+			},
+			o = {
+				function()
+					require("harpoon.ui").toggle_quick_menu()
+				end,
+				"Open menu",
 			},
 		},
 	},
@@ -140,6 +168,11 @@ wk.register({
 		},
 		r = {
 			name = "replace",
+		},
+		["t"] = {
+			name = "Templates",
+			c = { "<cmd>Telescope find_template<CR>", "Check templates" },
+			i = { "<cmd>Telescope find_template type=insert<CR>", "Insert template" },
 		},
 	},
 })

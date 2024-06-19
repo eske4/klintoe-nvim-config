@@ -80,6 +80,13 @@ wk.register({
 	["<leader>n"] = {
 		name = "Navigate",
 		d = { ":Oil<cr>", "Navigate directory" },
+		n = {
+			function()
+				local config_dir = vim.fn.stdpath("config")
+				vim.cmd.edit(config_dir)
+			end,
+			"Go to neovim config",
+		},
 		["f"] = {
 			name = "find",
 			t = { ":TodoTelescope<cr>", "Navigate TodoList" },

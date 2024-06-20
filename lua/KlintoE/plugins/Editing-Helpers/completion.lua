@@ -9,6 +9,7 @@ return {
 		"rafamadriz/friendly-snippets", -- useful snippets
 		"onsails/lspkind.nvim", -- vs-code like pictograms
 	},
+	build = "make install_jsregexp",
 	config = function()
 		local cmp = require("cmp")
 		local luasnip = require("luasnip")

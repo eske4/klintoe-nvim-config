@@ -79,4 +79,5 @@ opt.conceallevel = 1
 -- WARNING: Remember if lsp_lines break, set virtual_text to true
 vim.diagnostic.config({
 	virtual_text = false,
+	virtual_lines = { highlight_whole_line = false },
 })

@@ -72,6 +72,7 @@ wk.register({
 				"Toggle Lsp_lines, which put diagnostics under code lines",
 			},
 		},
+		t = { "<cmd>Telescope themes<CR>", "Switch color scheme" },
 	},
 })
 

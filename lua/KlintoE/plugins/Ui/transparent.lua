@@ -43,7 +43,16 @@ return {
 					"TreesitterContextLineNumberBottom",
 					"TreesitterContextLineNumber",
 				}, -- table: additional groups that should be cleared
-				exclude_groups = {}, -- table: groups you don't want to clear
+				exclude_groups = {
+
+					"lualine_a_insert",
+					"lualine_a_normal",
+					"lualine_a_visual",
+					"lualine_a_inactive",
+					"lualine_a_replace",
+					"lualine_a_terminal",
+					"lualine_a_command",
+				}, -- table: groups you don't want to clear
 			})
 			vim.cmd("TransparentEnable")
 		end,

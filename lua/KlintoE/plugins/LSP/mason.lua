@@ -30,35 +30,35 @@ return {
 		mason_lspconfig.setup({
 			-- Language servers
 			ensure_installed = {
-				"tsserver",
-				"html",
-				"cssls",
-				"tailwindcss",
-				"svelte",
-				"lua_ls",
-				"graphql",
-				"emmet_ls",
-				"prismals",
-				"pyright",
-				"clangd",
-				"vimls",
-				"jsonls",
-				"lemminx",
-				"yamlls",
-				"somesass_ls",
-				"r_language_server",
-				"ltex",
+				"angularls",
+				"arduino_language_server",
 				"autotools_ls",
-				"marksman",
-				"dockerls",
-				"docker_compose_language_service",
+				"bashls",
+				"clangd",
 				"cmake",
 				"csharp_ls",
-				"bashls",
-				"arduino_language_server",
-				"angularls",
+				"cssls",
+				"docker_compose_language_service",
+				"dockerls",
+				"emmet_ls",
+				"graphql",
+				"html",
+				"jsonls",
+				"lemminx",
+				"ltex",
+				"lua_ls",
+				"marksman",
+				"prismals",
+				"pyright",
+				"r_language_server",
+				"somesass_ls",
+				"svelte",
+				"tailwindcss",
+				"tsserver",
+				"vimls",
+				"yamlls",
+				-- auto-install configured servers (with lspconfig)
 			},
-			-- auto-install configured servers (with lspconfig)
 			automatic_installation = true, -- not the same as ensure_installed
 		})
 
@@ -70,27 +70,27 @@ return {
 				"markdownlint", --Markdown
 
 				-- Linters
-				"pylint", -- Python
-				"eslint_d", -- Javascript and more
-				"cmakelint", -- CMake
-				"luacheck", -- Lua
-				"jsonlint", -- Json
-				"golangci-lint", -- Golang
 				"checkstyle", -- Overall
-				"yamllint", -- Yaml
+				"cmakelint", -- CMake
+				"eslint_d", -- Javascript and more
+				"golangci-lint", -- Golang
+				"jsonlint", -- Json
+				"luacheck", -- Lua
+				"pylint", -- Python
 				"stylelint", -- CSS/SCSS etc
+				"yamllint", -- Yaml
 
 				-- Formatters
-				"stylua", -- lua
-				"prettier",
-				"isort", -- python
-				"black", -- python
-				"htmlbeautifier", -- HTML
 				"beautysh", --Shell
-				"latexindent", --Latex
-				"csharpier", --C#
+				"black", -- python
 				"clang-format", --C/C++
+				"csharpier", --C#
+				"htmlbeautifier", -- HTML
+				"isort", -- python
+				"latexindent", --Latex
+				"prettier",
 				"pretty-php", --PHP
+				"stylua", -- lua
 
 				-- Debugger adapters
 				"bash-debug-adapter", -- Shell
@@ -103,7 +103,5 @@ return {
 				"php-debug-adapter", -- PHP
 			},
 		})
-
-		local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
 	end,
 }

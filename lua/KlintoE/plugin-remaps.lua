@@ -33,6 +33,27 @@ wk.register({
 	},
 })
 
+wk.register({
+	["<leader>i"] = {
+		name = "Inspection and testing",
+		["t"] = {
+			name = "Test",
+			n = { "<cmd>lua require('neotest').run.run()<CR>", "Run the nearest test" },
+			c = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Run test on the current file" },
+			d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", "Debug the nearest test" },
+			s = { "<cmd>lua require('neotest').run.stop()<CR>", "Stop nearest test" },
+			a = { "<cmd>lua require('neotest').run.attach()<CR>", "Attach to nearest test" },
+			["w"] = {
+				name = "Watch/Test UI",
+				c = { "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<CR>", "Watch current file" },
+				o = { "<cmd>lua require('neotest').output.open({ enter = true })<CR>", "Show output window of test" },
+				s = { "<cmd>lua require('neotest').summary.toggle()<CR>", "Show summary of test" },
+				p = { "<cmd>lua require('neotest').output_panel.toggle()<CR>", "Show output panel of test" },
+			},
+		},
+	},
+})
+
 -- Diagnostics commands
 wk.register({
 	["<leader>t"] = {
@@ -132,7 +153,7 @@ wk.register({
 			name = "Step",
 			i = { ":lua require('dap').step_into()<cr>", "Step into" },
 			o = { ":lua require('dap').step_over()<cr>", "Step over" },
-			O = { ":lua require('dap').step_out()<cr>", "Step over" },
+			O = { ":lua require('dap').step_out()<cr>", "Step out" },
 			c = { ":lua require('dap').restart()<cr>", "Step to cursor" },
 		},
 	},
@@ -230,15 +251,3 @@ wk.register({
 
 -- Fold shortcut to open or fold functions etc
 vim.keymap.set("n", "<C-f>", "za") -- Fold or unfold
-
-vim.keymap.set("n", "<C-7>", '<cmd>exe v:count1 . "ToggleTerm"<CR>')
-vim.keymap.set("i", "<C-7>", '<cmd>exe v:count1 . "ToggleTerm"<CR>')
-
-function _G.set_terminal_keymaps()
-	local opts = { noremap = true }
-	vim.api.nvim_buf_set_keymap(0, "t", "<esc>", [[<C-\><C-n>]], opts)
-	vim.api.nvim_buf_set_keymap(0, "t", "<C-k>", [[<C-\><C-n><C-w>k]], opts)
-end
-
--- if you only want these mappings for toggle term use term://*toggleterm#* instead
-vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")

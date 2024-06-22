@@ -24,6 +24,7 @@ require("lazy").setup({
 	{ import = "KlintoE.plugins.Syntax-and-Analysis" },
 	{ import = "KlintoE.plugins.Linters" },
 	{ import = "KlintoE.plugins.Lang-Frameworks" },
+	{ import = "KlintoE.plugins.Test" },
 }, {
 	checker = {
 		enabled = true,

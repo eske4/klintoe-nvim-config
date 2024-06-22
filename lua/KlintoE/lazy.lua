@@ -20,7 +20,6 @@ require("lazy").setup({
 	{ import = "KlintoE.plugins.Editing-Helpers" },
 	{ import = "KlintoE.plugins.Games" },
 	{ import = "KlintoE.plugins.Git-Integrations" },
-	{ import = "KlintoE.plugins.Terminal-Integrations" },
 	{ import = "KlintoE.plugins.Syntax-and-Analysis" },
 	{ import = "KlintoE.plugins.Linters" },
 	{ import = "KlintoE.plugins.Lang-Frameworks" },

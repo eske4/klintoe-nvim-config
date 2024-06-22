@@ -203,6 +203,7 @@ wk.register({
 			c = { "<cmd>Telescope find_template<CR>", "Check templates" },
 			i = { "<cmd>Telescope find_template type=insert<CR>", "Insert template" },
 		},
+		s = { "<cmd>Silicon<CR>", "Make a code snippet image", mode = { "v" } },
 	},
 })
 

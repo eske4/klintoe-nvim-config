@@ -31,6 +31,7 @@ return {
 					"StatusLine",
 					"StatusLineNC",
 					"SignColumn",
+					"FoldColumn",
 					--"VirtualLines",
 					"EndOfBuffer",
 					"winbar",

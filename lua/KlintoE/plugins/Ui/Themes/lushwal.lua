@@ -6,6 +6,7 @@ return {
 			{ "rktjmp/lush.nvim" },
 			{ "rktjmp/shipwright.nvim" },
 		},
+		opt = true,
 		config = function()
 			require("lushwal").setup({
 				ale = false,

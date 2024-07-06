@@ -33,6 +33,11 @@ return {
 					"SignColumn",
 					--"VirtualLines",
 					"EndOfBuffer",
+					"winbar",
+					"TelescopeBorder",
+					"TelescopePromptBorder",
+					"TelescopeResultsBorder",
+					"TelescopePreviewBorder",
 				},
 				extra_groups = {
 					"NormalFloat", -- plugins which have float panel such as Lazy, Mason, LspInfo

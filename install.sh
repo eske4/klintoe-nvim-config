@@ -13,9 +13,9 @@ mkdir -p ~/codesnips
 yay -S --noconfirm lua luacheck rust-analyzer luarocks mercurial
 
 # Install Lua packages
-luarocks install argparse
-luarocks install luafilesystem
-luarocks install jsregexp
+sudo luarocks install argparse
+sudo luarocks install luafilesystem
+sudo luarocks install jsregexp
 
 # Install additional packages
 yay -S --noconfirm ripgrep gzip unzip curl tar shellcheck tree-sitter-cli gcc clang dotnet-sdk flutter nodejs cmake r php ruby python-pynvim silicon tmux php neovim

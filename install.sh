@@ -18,7 +18,7 @@ luarocks install luafilesystem
 luarocks install jsregexp
 
 # Install additional packages
-yay -S --noconfirm ripgrep gzip unzip curl tar shellcheck tree-sitter-cli gcc clang dotnet-sdk flutter nodejs cmake r php ruby python-pynvim silicon tmux
+yay -S --noconfirm ripgrep gzip unzip curl tar shellcheck tree-sitter-cli gcc clang dotnet-sdk flutter nodejs cmake r php ruby python-pynvim silicon tmux php
 
 # Install tmux plugin manager
 git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier

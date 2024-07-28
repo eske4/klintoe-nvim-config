@@ -6,10 +6,9 @@ return {
 	config = function()
 		require("silicon").setup({
 			font = "FiraCode",
-			output = (os.getenv("HOME") or os.getenv("USERPROFILE"))
-				.. "/codesnips/"
-				.. os.date("!%Y-%m-%dT%H-%M-%SZ")
-				.. "_code.png",
+			output = (os.getenv("HOME") or os.getenv("USERPROFILE")) .. "/Pictures/codesnips/" .. os.date(
+				"!%Y-%m-%dT%H-%M-%SZ"
+			) .. "_code.png",
 		})
 	end,
 }

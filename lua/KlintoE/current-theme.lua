@@ -1,1 +1,1 @@
-vim.cmd("colorscheme lushwal")
+vim.cmd("colorscheme yawnc")

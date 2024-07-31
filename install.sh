@@ -7,7 +7,7 @@ if ! command -v yay &> /dev/null; then
 fi
 
 # Create directory for code snippets if it doesn't exist
-mkdir -p "$HOME/Pictures/codesnips"
+mkdir -p "$HOME/Pictures/Codesnips"
 
 # Install Lua, LuaCheck, Rust Analyzer, Luarocks, and Mercurial
 yay -S --noconfirm lua luacheck rust-analyzer luarocks mercurial

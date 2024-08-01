@@ -1,13 +1,16 @@
 return {
 	{
 		"folke/which-key.nvim",
+		dependencies = {
+			"https://github.com/echasnovski/mini.icons",
+		},
 		event = "VimEnter",
-        config = function()
-            require("which-key").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-        end
+		config = function()
+			require("which-key").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
 	},
 }

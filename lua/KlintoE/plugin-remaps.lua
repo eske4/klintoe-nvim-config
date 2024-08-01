@@ -2,209 +2,189 @@
 local wk = require("which-key")
 
 -- Git mappings
-wk.register({
-	["<leader>g"] = {
-		name = "Git",
-		b = { ":Neogit<cr>", "Start git menu" },
-		h = { ":DiffviewFileHistory<cr>", "Look at git file history" },
-		["s"] = {
-			name = "Gitsigns",
-			s = { ":Git<cr>", "Git status" },
-			n = { ":lua require('gitsigns').next_hunk()<cr>", "Next hunk" },
-			u = { ":lua require('gitsigns').undo_stage_hunk()<cr>", "Undo stage hunk" },
-			r = { ":lua require('gitsigns').reset_hunk()<cr>", "Reset hunk" },
-			f = { ":lua require('gitsigns').diffthis('~1')<cr>", "Diff this" },
-			t = { ":TodoTelescope<cr>", "Search TodoList" },
-			b = { ":lua require('gitsigns').blame_line()<cr>", "Blame line" },
+wk.add({
+	{
+		{ "<leader>g", group = "Git" },
+		{ "<leader>gb", ":Neogit<cr>", desc = "Start git menu" },
+		{ "<leader>gh", ":DiffviewFileHistory<cr>", desc = "Look at git file history" },
+		{ "<leader>gs", group = "Gitsigns" },
+		{ "<leader>gsb", ":lua require('gitsigns').blame_line()<cr>", desc = "Blame line" },
+		{ "<leader>gsf", ":lua require('gitsigns').diffthis('~1')<cr>", desc = "Diff this" },
+		{ "<leader>gsn", ":lua require('gitsigns').next_hunk()<cr>", desc = "Next hunk" },
+		{
+			"<leader>gsr",
+			":lua require('gitsigns').                │          reset_hunk()<cr>",
+			desc = "Reset hunk",
 		},
+		{ "<leader>gss", ":Git<cr>", desc = "Git status" },
+		{ "<leader>gst", ":TodoTelescope<cr>", desc = "Search      │          TodoList" },
+		{ "<leader>gsu", ":lua require('gitsigns').undo_stage_hunk()<cr>", desc = "Undo stage hunk" },
 	},
 })
 
 -- Analysis mappings
-wk.register({
-	["<leader>a"] = {
-		name = "Analysis commands",
-		l = {
+wk.add({
+	{
+		{ "<leader>a", group = "Analysis commands" },
+		{
+			"<leader>l",
 			function()
 				require("lint").try_lint()
 			end,
-			"Trigger linting for current file",
+			desc = "Trigger linting for current file",
 		},
 	},
 })
 
-wk.register({
-	["<leader>i"] = {
-		name = "Inspection and testing",
-		["t"] = {
-			name = "Test",
-			n = { "<cmd>lua require('neotest').run.run()<CR>", "Run the nearest test" },
-			c = { "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>", "Run test on the current file" },
-			d = { "<cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", "Debug the nearest test" },
-			s = { "<cmd>lua require('neotest').run.stop()<CR>", "Stop nearest test" },
-			a = { "<cmd>lua require('neotest').run.attach()<CR>", "Attach to nearest test" },
-			["w"] = {
-				name = "Watch/Test UI",
-				c = { "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<CR>", "Watch current file" },
-				o = { "<cmd>lua require('neotest').output.open({ enter = true })<CR>", "Show output window of test" },
-				s = { "<cmd>lua require('neotest').summary.toggle()<CR>", "Show summary of test" },
-				p = { "<cmd>lua require('neotest').output_panel.toggle()<CR>", "Show output panel of test" },
-			},
-		},
+wk.add({
+	{ "<leader>i", group = "Inspection and testing" },
+	{ "<leader>it", group = "Test" },
+	{ "<leader>iw", group = "Watch/Test UI" },
+	{ "<leader>itn", "<cmd>lua require('neotest').run.run()<CR>", desc = "Run the nearest test" },
+	{
+		"<leader>itc",
+		"<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<CR>",
+		desc = "Run test on the current file",
 	},
+	{ "<leader>itd", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<CR>", desc = "Debug the nearest test" },
+	{ "<leader>its", "<cmd>lua require('neotest').run.stop()<CR>", desc = "Stop nearest test" },
+	{ "<leader>ita", "<cmd>lua require('neotest').run.attach()<CR>", desc = "Attach to nearest test" },
+	{ "<leader>iwc", "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<CR>", desc = "Watch current file" },
+	{
+		"<leader>iwo",
+		"<cmd>lua require('neotest').output.open({ enter = true })<CR>",
+		desc = "Show output window of test",
+	},
+	{ "<leader>iws", "<cmd>lua require('neotest').summary.toggle()<CR>", desc = "Show summary of test" },
+	{ "<leader>iwp", "<cmd>lua require('neotest').output_panel.toggle()<CR>", desc = "Show output panel of test" },
 })
 
 -- Diagnostics commands
-wk.register({
-	["<leader>t"] = {
-		name = "Diagnostics",
-		t = { "<cmd>Trouble diagnostics toggle<CR>", "Diagnostics" },
-		f = { "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", "Buffer Diagnostics (Trouble)" },
-		s = { "<cmd>Trouble symbols toggle focus=false<CR>", "Symbols (Trouble)" },
-		l = {
-			"<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
-			"LSP Definitions / references / ... (Trouble)",
-		},
-		L = { "<cmd>Trouble loclist toggle<CR>", "Location List (Trouble)" },
-		Q = { "<cmd>Trouble qflist toggle<CR>", "Quickfix List (Trouble)" },
+wk.add({
+	{ "<leader>t", group = "Diagnostics" },
+	{ "<leader>tt", "<cmd>Trouble diagnostics toggle<CR>", desc = "Diagnostics" },
+	{ "<leader>tf", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", desc = "Buffer Diagnostics (Trouble)" },
+	{ "<leader>ts", "<cmd>Trouble symbols toggle focus=false<CR>", desc = "Symbols (Trouble)" },
+	{
+		"<leader>tl",
+		"<cmd>Trouble lsp toggle focus=false win.position=right<CR>",
+		desc = "LSP Definitions / references / ...",
 	},
+	{ "<leader>tL", "<cmd>Trouble loclist toggle<CR>", desc = "Location List (Trouble)" },
+	{ "<leader>tQ", "<cmd>Trouble qflist toggle<CR>", desc = "Quickfix List (Trouble)" },
 })
 
--- Workspace commands: new tabs, terminals etc
-wk.register({
-	["<leader>w"] = {
-		name = "Workspace settings",
-		["p"] = {
-			name = "panel",
-			h = { ":split<cr>", "New panel horizontal" },
-			v = { ":vsplit<cr>", "New panel vertical" },
-		},
-		["d"] = {
-			name = "Diagnostics",
-			l = {
-				function()
-					local virtual_text = vim.diagnostic.config().virtual_text
-					if virtual_text == nil then
-						virtual_text = false
-					end
-					vim.diagnostic.config({ virtual_text = not virtual_text })
-					require("lsp_lines").toggle()
-				end,
-				"Toggle Lsp_lines, which put diagnostics under code lines",
-			},
-		},
-		t = { "<cmd>Telescope themes<CR>", "Switch color scheme" },
+-- Workspace commands: new tabs, terminals, etc
+wk.add({
+	{ "<leader>w", group = "Workspace settings" },
+	{ "<leader>wp", group = "Panel" },
+	{ "<leader>wd", group = "Diagnostics" },
+	{ "<leader>wph", ":split<cr>", desc = "New panel horizontal" },
+	{ "<leader>wpv", ":vsplit<cr>", desc = "New panel vertical" },
+	{
+		"<leader>wdl",
+		function()
+			local virtual_text = vim.diagnostic.config().virtual_text
+			if virtual_text == nil then
+				virtual_text = false
+			end
+			vim.diagnostic.config({ virtual_text = not virtual_text })
+			require("lsp_lines").toggle()
+		end,
+		desc = "Toggle Lsp_lines, which put diagnostics under code lines",
 	},
+	{ "<leader>wt", "<cmd>Telescope themes<CR>", desc = "Switch color scheme" },
 })
 
 -- Navigation commands things to switch between files
-wk.register({
-	["<leader>n"] = {
-		name = "Navigate",
-		d = { ":Oil<cr>", "Navigate directory" },
-		n = {
-			function()
-				local config_dir = vim.fn.stdpath("config")
-				vim.cmd.edit(config_dir)
-			end,
-			"Go to neovim config",
-		},
-		["f"] = {
-			name = "find",
-			t = { ":TodoTelescope<cr>", "Navigate TodoList" },
-			f = { ":lua require('telescope.builtin').find_files()<CR>", "Navigate files" },
-			g = { ":lua require('telescope.builtin').git_files()<CR>", "Navigate git files" },
-			s = {
-				":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
-				"Find words",
-			},
-		},
-		["h"] = {
-			name = "Harpoon",
-			m = {
-				function()
-					require("harpoon.mark").add_file()
-				end,
-				"Mark file",
-			},
-			o = {
-				function()
-					require("harpoon.ui").toggle_quick_menu()
-				end,
-				"Open menu",
-			},
-		},
+wk.add({
+	{ "<leader>n", group = "Navigate" },
+	{ "<leader>nf", group = "Find" },
+	{ "<leader>nh", group = "Harpoon" },
+	{ "<leader>nd", ":Oil<cr>", desc = "Navigate directory" },
+	{
+		"<leader>nn",
+		function()
+			local config_dir = vim.fn.stdpath("config")
+			vim.cmd.edit(config_dir)
+		end,
+		desc = "Go to neovim config",
+	},
+	{ "<leader>nft", ":TodoTelescope<cr>", desc = "Navigate TodoList" },
+	{ "<leader>nff", ":lua require('telescope.builtin').find_files()<CR>", desc = "Navigate files" },
+	{ "<leader>nfg", ":lua require('telescope.builtin').git_files()<CR>", desc = "Navigate git files" },
+	{
+		"<leader>nfs",
+		":lua require('telescope.builtin').grep_string({ search = vim.fn.input('Grep > ') })<CR>",
+		desc = "Find words",
+	},
+	{
+		"<leader>nhm",
+		function()
+			require("harpoon.mark").add_file()
+		end,
+		desc = "Mark file",
+	},
+	{
+		"<leader>nho",
+		function()
+			require("harpoon.ui").toggle_quick_menu()
+		end,
+		desc = "Open menu",
 	},
 })
 
 -- Debugger commands
-wk.register({
-	["<leader>d"] = {
-		name = "Debugger",
-		t = { ":lua require('dap').toggle_breakpoint()<cr>", "Toggle breakpoint for debugger" },
-		b = { ":lua require('dap').set_breakpoint()<cr>", "Set breakpoint" },
-		c = { ":lua require('dap').continue()<cr>", "Start debugger/continue" },
-		q = {
-			"<cmd>lua require('dap').disconnect({ terminateDebuggee = true })<CR><cmd>lua require('dapui').close()<CR>",
-			"Quit debugger",
-		},
-		r = { ":lua require('dap').restart()<cr>", "Restart debugger" },
-		["s"] = {
-			name = "Step",
-			i = { ":lua require('dap').step_into()<cr>", "Step into" },
-			o = { ":lua require('dap').step_over()<cr>", "Step over" },
-			O = { ":lua require('dap').step_out()<cr>", "Step out" },
-			c = { ":lua require('dap').restart()<cr>", "Step to cursor" },
-		},
+wk.add({
+	{ "<leader>d", group = "Debugger" },
+	{ "<leader>ds", group = "Step" },
+	{ "<leader>dt", ":lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle breakpoint for debugger" },
+	{ "<leader>db", ":lua require('dap').set_breakpoint()<cr>", desc = "Set breakpoint" },
+	{ "<leader>dc", ":lua require('dap').continue()<cr>", desc = "Start debugger/continue" },
+	{
+		"<leader>dq",
+		"<cmd>lua require('dap').disconnect({ terminateDebuggee = true })<CR><cmd>lua require('dapui').close()<CR>",
+		desc = "Quit debugger",
 	},
+	{ "<leader>dr", ":lua require('dap').restart()<cr>", desc = "Restart debugger" },
+	{ "<leader>dsi", ":lua require('dap').step_into()<cr>", desc = "Step into" },
+	{ "<leader>dso", ":lua require('dap').step_over()<cr>", desc = "Step over" },
+	{ "<leader>dsO", ":lua require('dap').step_out()<cr>", desc = "Step out" },
+	{ "<leader>dsc", ":lua require('dap').restart()<cr>", desc = "Step to cursor" },
 })
 
 -- Focus commands for now
-wk.register({
-	["<leader>f"] = {
-		name = "Focus mode currently",
-
-		["m"] = {
-			name = "Focus modes",
-			t = { ":Twilight<cr>", "Twillight mode focus on what is hovered" },
-			z = { ":ZenMode<cr>", "ZenMode remove all distractions and area smaller" },
-		},
-	},
+wk.add({
+	{ "<leader>f", group = "Focus mode currently" },
+	{ "<leader>fm", group = "Focus modes" },
+	{ "<leader>fmt", ":Twilight<cr>", desc = "Twillight mode focus on what is hovered" },
+	{ "<leader>fmz", ":ZenMode<cr>", desc = "ZenMode remove all distractions and area smaller" },
 })
 
 -- Edit commands
-wk.register({
-	["<leader>e"] = {
-		name = "Edit commands",
-		["d"] = {
-			name = "Delete commands",
-			v = { '"_d<cr>', "Delete to the void", mode = { "v", "n" } },
-		},
-		["p"] = {
-			name = "Paste",
-			v = { '"_dP', "Paste then content to void" },
-		},
-		x = { "<cmd>!chmod +x %<CR>", "Make the file executable" },
-		f = {
-			function()
-				require("conform").format({
-					lsp_fallback = true,
-					async = false,
-					timeout_ms = 1000,
-				})
-			end,
-			"Trigger formatting manually",
-		},
-		r = {
-			name = "replace",
-		},
-		["t"] = {
-			name = "Templates",
-			c = { "<cmd>Telescope find_template<CR>", "Check templates" },
-			i = { "<cmd>Telescope find_template type=insert<CR>", "Insert template" },
-		},
-		s = { "<cmd>Silicon<CR>", "Make a code snippet image", mode = { "v" } },
+wk.add({
+	{ "<leader>e", group = "Edit commands" },
+	{ "<leader>ed", group = "Delete commands" },
+	{ "<leader>ep", group = "Paste" },
+	{ "<leader>er", group = "Replace" },
+	{ "<leader>et", group = "Templates" },
+	{ "<leader>edv", '"_d<cr>', desc = "Delete to the void", mode = { "v", "n" } },
+	{ "<leader>epv", '"_dP', desc = "Paste then content to void" },
+	{ "<leader>ex", "<cmd>!chmod +x %<CR>", desc = "Make the file executable" },
+	{
+		"<leader>ef",
+		function()
+			require("conform").format({
+				lsp_fallback = true,
+				async = false,
+				timeout_ms = 1000,
+			})
+		end,
+		desc = "Trigger formatting manually",
 	},
+	{ "<leader>etc", "<cmd>Telescope find_template<CR>", desc = "Check templates" },
+	{ "<leader>eti", "<cmd>Telescope find_template type=insert<CR>", desc = "Insert template" },
+	{ "<leader>es", "<cmd>Silicon<CR>", desc = "Make a code snippet image", mode = { "v" } },
 })
 
 vim.keymap.set(
@@ -215,38 +195,37 @@ vim.keymap.set(
 )
 
 -- Enables copy so it can paste outside of neovim
-wk.register({
-	["<leader>y"] = { '"+y', "Copy to clipboard outside of nvim", mode = { "v", "n" } },
-	["<leader>Y"] = { '"+Y', "Copy to clipboard outside of nvim" },
+wk.add({
+	{ "<leader>y", '"+y', desc = "Copy to clipboard outside of nvim", mode = { "v", "n" } },
+	{ "<leader>Y", '"+Y', desc = "Copy to clipboard outside of nvim" },
 })
 
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "undo tree toggle" })
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undo tree toggle" })
 
 -- Search commands
-wk.register({
-	["<leader>s"] = {
-		name = "Search",
-		["f"] = {
-			name = "Flash searching",
-			s = {
-				function()
-					require("flash").jump()
-				end,
-				"Flash jump",
-			},
-			t = {
-				function()
-					require("flash").treesitter()
-				end,
-				"Flash Treesiter / highlight block of code",
-			},
-			T = {
-				function()
-					require("flash").treesitter_search()
-				end,
-				"Flash telescope search",
-			},
-		},
+wk.add({
+	{ "<leader>s", group = "Search" },
+	{ "<leader>sf", group = "Flash searching" },
+	{
+		"<leader>sfs",
+		function()
+			require("flash").jump()
+		end,
+		desc = "Flash jump",
+	},
+	{
+		"<leader>sft",
+		function()
+			require("flash").treesitter()
+		end,
+		desc = "Flash Treesitter / highlight block of code",
+	},
+	{
+		"<leader>sfT",
+		function()
+			require("flash").treesitter_search()
+		end,
+		desc = "Flash telescope search",
 	},
 })
 

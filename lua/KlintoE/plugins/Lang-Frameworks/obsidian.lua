@@ -20,7 +20,7 @@ return {
 		workspaces = {
 			{
 				name = "personal",
-				path = "~/'Obsidian Vault'/personal",
+				path = "~/Obsidian/personal",
 			},
 			-- add more workespaces here... following
 			--  {
@@ -30,7 +30,7 @@ return {
 		},
 
 		templates = {
-			folder = "~/vaults/templates/",
+			folder = "~/Obsidian/templates/",
 			date_format = "%Y-%m-%d-%a",
 			time_format = "%H:%M",
 		},

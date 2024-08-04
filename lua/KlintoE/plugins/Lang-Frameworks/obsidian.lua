@@ -22,6 +22,11 @@ return {
 				name = "personal",
 				path = "~/vaults/personal",
 			},
+			-- add more workespaces here... following
+			--  {
+			--      name = "name",
+			--      path = "Your-path"
+			--  },
 		},
 
 		templates = {

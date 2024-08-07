@@ -36,7 +36,7 @@ return {
 				"bashls",
 				"clangd",
 				"cmake",
-				"csharp_ls",
+				"omnisharp",
 				"cssls",
 				"docker_compose_language_service",
 				"dockerls",

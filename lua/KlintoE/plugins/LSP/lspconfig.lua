@@ -7,6 +7,7 @@ return {
 		event = { "BufReadPre", "BufNewFile" },
 		-- WARNING: Remember if lsp_lines break, set virtual_text to true can be found in options.lua
 		config = function()
+			local bin_locations = vim.fn.stdpath("data") .. "/mason/bin/"
 			local lspconfig = require("lspconfig")
 			local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
@@ -45,7 +46,11 @@ return {
 				tsserver = { capabilities = capabilities, on_attach = on_attach },
 				html = { capabilities = capabilities, on_attach = on_attach },
 				lua_ls = { capabilities = capabilities, on_attach = on_attach },
-				csharp_ls = { capabilities = capabilities, on_attach = on_attach },
+				omnisharp = {
+					capabilities = capabilities,
+					on_attach = on_attach,
+					cmd = { bin_locations .. "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+				},
 				clangd = {
 					capabilities = capabilities,
 					on_attach = on_attach,

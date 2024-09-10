@@ -35,6 +35,7 @@ return {
 				"autotools_ls",
 				"bashls",
 				"clangd",
+				"hls",
 				"cmake",
 				"omnisharp",
 				"cssls",

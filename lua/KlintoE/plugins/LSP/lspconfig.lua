@@ -78,6 +78,8 @@ return {
 				arduino_language_server = { capabilities = capabilities, on_attach = on_attach },
 				svelte = { capabilities = capabilities, on_attach = on_attach },
 				tailwindcss = { capabilities = capabilities, on_attach = on_attach },
+				hls = { capabilities = capabilities, on_attach = on_attach },
+
 			}
 
 			-- Loop through servers and set up configurations

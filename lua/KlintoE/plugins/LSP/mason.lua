@@ -80,6 +80,7 @@ return {
 				"pylint", -- Python
 				"stylelint", -- CSS/SCSS etc
 				"yamllint", -- Yaml
+				"hlint", --Haskell
 
 				-- Formatters
 				"beautysh", --Shell
@@ -92,6 +93,7 @@ return {
 				"prettier",
 				"pretty-php", --PHP
 				"stylua", -- lua
+				"ormolu", -- Haskell
 
 				-- Debugger adapters
 				"bash-debug-adapter", -- Shell

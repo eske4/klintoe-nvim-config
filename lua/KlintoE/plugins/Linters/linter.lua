@@ -28,6 +28,8 @@ return {
 				html = { "tidy" },
 				cmake = { "cmakelint" },
 				zsh = { "zsh" },
+				haskell = { "hlint" },
+
 			}
 
 			local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

@@ -55,7 +55,7 @@ return {
 				"somesass_ls",
 				"svelte",
 				"tailwindcss",
-				"tsserver",
+				"ts_ls",
 				"vimls",
 				"yamlls",
 				-- auto-install configured servers (with lspconfig)

@@ -79,7 +79,6 @@ return {
 				svelte = { capabilities = capabilities, on_attach = on_attach },
 				tailwindcss = { capabilities = capabilities, on_attach = on_attach },
 				hls = { capabilities = capabilities, on_attach = on_attach },
-
 			}
 
 			-- Loop through servers and set up configurations

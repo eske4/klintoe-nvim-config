@@ -43,7 +43,7 @@ return {
 
 			-- LSP server configurations
 			local servers = {
-				tsserver = { capabilities = capabilities, on_attach = on_attach },
+				ts_ls = { capabilities = capabilities, on_attach = on_attach },
 				html = { capabilities = capabilities, on_attach = on_attach },
 				lua_ls = { capabilities = capabilities, on_attach = on_attach },
 				omnisharp = {

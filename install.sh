@@ -18,7 +18,8 @@ sudo luarocks install luafilesystem
 sudo luarocks install jsregexp
 
 # Install additional packages
-yay -S --noconfirm ripgrep gzip unzip curl tar shellcheck tree-sitter-cli gcc clang dotnet-sdk nodejs cmake r php ruby python-pynvim silicon tmux php neovim
+yay -S --noconfirm ripgrep gzip unzip curl tar shellcheck tree-sitter-cli gcc clang dotnet-sdk nodejs cmake r php ruby python-pynvim silicon tmux php neovim ghcup-hs-bin
+ghcup install hls
 #install flutter manually
 
 # Install tmux plugin manager

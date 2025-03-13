@@ -26,5 +26,9 @@ ghcup install hls
 git clone https://github.com/jimeh/tmuxifier.git ~/.tmuxifier
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
+tmux source "$HOME/.tmux.conf"
+cp "$HOME/.config/nvim/developer_assets/.tmux/plugins/tmux-which-key/config.yaml" "$HOME/.tmux/plugins/tmux-which-key/"
+echo "Copied config.yaml to tmux which key"
+
 
 echo "All packages have been successfully installed."

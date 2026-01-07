@@ -34,8 +34,12 @@ return {
 					{ desc = "Show buffer diagnostics" }
 				)
 				keymap.set("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
-				keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
-				keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+				keymap.set("n", "[d", function()
+					vim.diagnostic.jump({ count = -1 })
+				end, { desc = "Go to previous diagnostic" })
+				keymap.set("n", "]d", function()
+					vim.diagnostic.jump({ count = 1 })
+				end, { desc = "Go to next diagnostic" })
 				keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
 				keymap.set("n", "<leader>rs", ":LspRestart<CR>", { desc = "Restart LSP" })
 				keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
@@ -72,7 +76,16 @@ return {
 				jsonls = { capabilities = capabilities, on_attach = on_attach },
 				docker_compose_language_service = { capabilities = capabilities, on_attach = on_attach },
 				dockerls = { capabilities = capabilities, on_attach = on_attach },
-				cmake = { capabilities = capabilities, on_attach = on_attach },
+				neocmakelsp = {
+					capabilities = capabilities,
+					on_attach = on_attach,
+					-- neocmakelsp usually works out of the box with Mason,
+					-- but you can add init_options if you want linting/formatting
+					init_options = {
+						format = { enable = true },
+						lint = { enable = true },
+					},
+				},
 				bashls = { capabilities = capabilities, on_attach = on_attach },
 				angularls = { capabilities = capabilities, on_attach = on_attach },
 				arduino_language_server = { capabilities = capabilities, on_attach = on_attach },

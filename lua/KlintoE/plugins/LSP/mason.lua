@@ -36,7 +36,6 @@ return {
 				"bashls",
 				"clangd",
 				"hls",
-				"cmake",
 				"omnisharp",
 				"cssls",
 				"docker_compose_language_service",
@@ -51,7 +50,6 @@ return {
 				"marksman",
 				"prismals",
 				"pyright",
-				"r_language_server",
 				"somesass_ls",
 				"svelte",
 				"tailwindcss",
@@ -68,6 +66,7 @@ return {
 
 				-- Formatter and Linters
 				"cmakelang", -- CMake
+				"neocmakelsp",
 				"markdownlint", --Markdown
 
 				-- Linters

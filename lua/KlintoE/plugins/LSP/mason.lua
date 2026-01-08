@@ -1,34 +1,23 @@
 return {
-	"williamboman/mason.nvim",
-	dependencies = {
+	-- 1. Mason LSP Config
+	{
 		"williamboman/mason-lspconfig.nvim",
-		"WhoIsSethDaniel/mason-tool-installer.nvim",
-		"mfussenegger/nvim-dap",
-		"jay-babu/mason-nvim-dap.nvim",
-	},
-
-	config = function()
-		-- import mason
-		local mason = require("mason")
-
-		-- import mason-lspconfig
-		local mason_lspconfig = require("mason-lspconfig")
-		local mason_tool_installer = require("mason-tool-installer")
-		local mason_dap = require("mason-nvim-dap")
-
-		-- enable mason and configure icons
-		mason.setup({
-			ui = {
-				icons = {
-					package_installed = "✓",
-					package_pending = "➜",
-					package_uninstalled = "✗",
+		dependencies = {
+			{
+				"williamboman/mason.nvim",
+				opts = {
+					ui = {
+						icons = {
+							package_installed = "✓",
+							package_pending = "➜",
+							package_uninstalled = "✗",
+						},
+					},
 				},
 			},
-		})
-
-		mason_lspconfig.setup({
-			-- Language servers
+			"neovim/nvim-lspconfig",
+		},
+		opts = {
 			ensure_installed = {
 				"angularls",
 				"arduino_language_server",
@@ -47,63 +36,70 @@ return {
 				"lemminx",
 				"ltex",
 				"lua_ls",
-				"marksman",
-				"prismals",
 				"pyright",
 				"somesass_ls",
-				"svelte",
-				"tailwindcss",
 				"ts_ls",
 				"vimls",
 				"yamlls",
-				-- auto-install configured servers (with lspconfig)
 			},
-			automatic_installation = true, -- not the same as ensure_installed
-		})
+		},
+	},
 
-		mason_tool_installer.setup({
+	-- 2. Mason Tool Installer
+	{
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		dependencies = { "williamboman/mason.nvim" },
+		opts = {
 			ensure_installed = {
-
-				-- Formatter and Linters
-				"cmakelang", -- CMake
+				-- Linters/Formatters
+				"cmakelang",
 				"neocmakelsp",
-				"markdownlint", --Markdown
-
-				-- Linters
-				"checkstyle", -- Overall
-				"cmakelint", -- CMake
-				"eslint_d", -- Javascript and more
-				"golangci-lint", -- Golang
-				"jsonlint", -- Json
-				"luacheck", -- Lua
-				"pylint", -- Python
-				"stylelint", -- CSS/SCSS etc
-				"yamllint", -- Yaml
-				"hlint", --Haskell
-
-				-- Formatters
-				"beautysh", --Shell
-				"black", -- python
-				"clang-format", --C/C++
-				"csharpier", --C#
-				"htmlbeautifier", -- HTML
-				"isort", -- python
-				"latexindent", --Latex
+				"markdownlint",
+				"checkstyle",
+				"cmakelint",
+				"eslint_d",
+				"golangci-lint",
+				"jsonlint",
+				"luacheck",
+				"pylint",
+				"stylelint",
+				"yamllint",
+				"hlint",
+				"beautysh",
+				"black",
+				"clang-format",
+				"csharpier",
+				"htmlbeautifier",
+				"isort",
+				"latexindent",
 				"prettier",
-				"pretty-php", --PHP
-				"stylua", -- lua
-				"ormolu", -- Haskell
-
-				-- Debugger adapters
-				"bash-debug-adapter", -- Shell
-				"codelldb", -- C/C++/Rust
-				"debugpy", -- Python
-				"java-debug-adapter", -- Java
-				"js-debug-adapter", -- Javascript
-				"kotlin-debug-adapter", -- Kotlin
-				"netcoredbg", -- C#
-				"php-debug-adapter", -- PHP
+				"pretty-php",
+				"stylua",
+				"ormolu",
+				-- Debuggers
+				"bash-debug-adapter",
+				"codelldb",
+				"debugpy",
+				"java-debug-adapter",
+				"js-debug-adapter",
+				"kotlin-debug-adapter",
+				"netcoredbg",
+				"php-debug-adapter",
 			},
-		})
-	end,
+		},
+	},
+
+	-- 3. Mason DAP (Now correctly placed outside the tool-installer table)
+	{
+		"jay-babu/mason-nvim-dap.nvim",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"williamboman/mason.nvim",
+		},
+		opts = {
+			automatic_installation = true,
+			handlers = {},
+			ensure_installed = {},
+		},
+	},
 }

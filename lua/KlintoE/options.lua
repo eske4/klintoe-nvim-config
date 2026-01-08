@@ -68,22 +68,5 @@ opt.splitbelow = true -- split horizontal window to the bottom
 opt.fillchars = { eob = " " }
 
 -- add icons to lint
-vim.diagnostic.config({
-	signs = {
-		text = {
-			[vim.diagnostic.severity.ERROR] = "",
-			[vim.diagnostic.severity.WARN] = "",
-			[vim.diagnostic.severity.INFO] = "",
-			[vim.diagnostic.severity.HINT] = "",
-		},
-	},
-})
-
 -- For Obsidian nvim to improve markdown experience
 opt.conceallevel = 1
-
--- WARNING: Remember if lsp_lines break, set virtual_text to true
-vim.diagnostic.config({
-	virtual_text = false,
-	virtual_lines = { highlight_whole_line = false },
-})

@@ -204,28 +204,27 @@ vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle, { desc = "Undo tree tog
 
 -- Search commands
 wk.add({
-	{ "<leader>s", group = "Search" },
-	{ "<leader>sf", group = "Flash searching" },
+	{ "<leader>j", group = "Jump/flash in code" },
 	{
-		"<leader>sfs",
+		"<leader>jj",
 		function()
 			require("flash").jump()
 		end,
 		desc = "Flash jump",
 	},
 	{
-		"<leader>sft",
+		"<leader>jt",
 		function()
 			require("flash").treesitter()
 		end,
-		desc = "Flash Treesitter / highlight block of code",
+		desc = "Treesitter jump",
 	},
 	{
-		"<leader>sfT",
+		"<leader>js",
 		function()
 			require("flash").treesitter_search()
 		end,
-		desc = "Flash telescope search",
+		desc = "Treesitter search",
 	},
 })
 

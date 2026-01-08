@@ -18,7 +18,6 @@ require("lazy").setup({
 	{ import = "KlintoE.plugins.LSP" },
 	{ import = "KlintoE.plugins.Ui" },
 	{ import = "KlintoE.plugins.Ui.Themes" },
-	{ import = "KlintoE.plugins.Util" },
 	{ import = "KlintoE.plugins.Motions" },
 	{ import = "KlintoE.plugins.Debuggers" },
 	{ import = "KlintoE.plugins.Editing-Helpers" },

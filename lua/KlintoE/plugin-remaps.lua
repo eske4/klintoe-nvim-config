@@ -100,7 +100,7 @@ wk.add({
 wk.add({
 	{ "<leader>n", group = "Navigate" },
 	{ "<leader>nf", group = "Find" },
-	{ "<leader>nh", group = "Harpoon" },
+	{ "<leader>h", group = "Harpoon" },
 	{ "<leader>nd", ":Oil<cr>", desc = "Navigate directory" },
 	{
 		"<leader>nn",
@@ -119,14 +119,14 @@ wk.add({
 		desc = "Find words",
 	},
 	{
-		"<leader>nhm",
+		"<leader>hm",
 		function()
 			require("harpoon.mark").add_file()
 		end,
 		desc = "Mark file",
 	},
 	{
-		"<leader>nho",
+		"<leader>ho",
 		function()
 			require("harpoon.ui").toggle_quick_menu()
 		end,

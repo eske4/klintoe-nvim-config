@@ -11,7 +11,6 @@ return {
 		"Issafalcon/neotest-dotnet",
 		"rouge8/neotest-rust",
 		"orjangj/neotest-ctest",
-		"rcasia/neotest-java",
 		"rcasia/neotest-bash",
 	},
 	config = function()
@@ -25,7 +24,6 @@ return {
 				require("neotest-dotnet"),
 				require("neotest-ctest"),
 				require("neotest-bash"),
-				require("neotest-java"),
 				require("neotest-phpunit"),
 				require("neotest-rust"),
 			},
